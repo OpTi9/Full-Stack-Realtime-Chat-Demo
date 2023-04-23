@@ -1,12 +1,6 @@
-import { FC } from 'react'
-import Button from "@/components/ui/Button";
+import {db} from "@/lib/db";
 
-interface pageProps {}
+export default async function Home() {
 
-const page: FC<pageProps> = ({}) => {
-    return <div>
-        <Button>Button</Button>
-    </div>
+    return <div>test</div>
 }
-
-export default page
