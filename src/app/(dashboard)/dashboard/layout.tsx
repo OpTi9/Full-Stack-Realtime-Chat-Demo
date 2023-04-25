@@ -2,8 +2,10 @@ import { FC, ReactNode } from 'react'
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/lib/auth";
 import {notFound} from "next/navigation";
-import Link from 'next/link'
-import { Icon, Icons } from '@/components/ui/Icons'
+import Link from 'next/link';
+import Image from 'next/image';
+import { Icon, Icons } from '@/components/ui/Icons';
+import SignOutButton from '@/components/SignOutButton';
 
 interface LayoutProps {
     children:ReactNode
@@ -65,6 +67,28 @@ const Layout = async ({children}: LayoutProps) => {
                                     )
                                 })}
                             </ul>
+                        </li>
+                        <li className='-mx-6 mt-auto flex items-center'>
+                            <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
+                                <div className='relative h-8 w-8 bg-gray-50'>
+                                    <Image
+                                        fill
+                                        referrerPolicy='no-referrer'
+                                        className='rounded-full'
+                                        src={session.user.image || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'}
+                                        alt='Your profile picture'
+                                    />
+                                </div>
+
+                                <span className='sr-only'>Your profile</span>
+                                <div className='flex flex-col'>
+                                    <span aria-hidden='true'>{session.user.name}</span>
+                                    <span className='text-xs text-zinc-400' aria-hidden='true'>
+                                        {session.user.email}
+                                    </span>
+                                </div>
+                            </div>
+                            <SignOutButton className='h-full aspect-square' />
                         </li>
                     </ul>
                 </nav>
