@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/lib/auth";
 import {notFound} from "next/navigation";
