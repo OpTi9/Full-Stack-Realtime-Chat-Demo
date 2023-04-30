@@ -45,7 +45,14 @@ const UnseenChatToast: FC<UnseenChatToastProps> = ({
 
                 <div className='ml-3 flex-1'>
                     <p className='text-sm font-medium text-gray-900'>{senderName}</p>
-                    <p className='mt-1 text-sm text-gray-500'>{senderMessage.slice(0, 60) + " ..."}</p>
+                    <p className='mt-1 text-sm text-gray-500'>
+                        {
+                            senderMessage.length > 30 ?
+                                (senderMessage.slice(0, 30) + '...')
+                                :
+                                senderMessage
+                        }
+                    </p>
                 </div>
             </div>
         </a>

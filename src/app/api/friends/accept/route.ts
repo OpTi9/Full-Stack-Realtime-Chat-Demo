@@ -3,6 +3,8 @@ import {getServerSession} from "next-auth";
 import {authOptions} from "@/lib/auth";
 import {fetchRedis} from "@/helpers/redis";
 import {db} from "@/lib/db";
+import {pusherServer} from "@/lib/pusher";
+import {toPusherKey} from "@/lib/utils";
 
 export async function POST(req: Request) {
     try {
@@ -29,6 +31,10 @@ export async function POST(req: Request) {
         if(!hasFriendRequest) {
             return new Response('No friend request', {status: 400});
         }
+
+        // update in real time the screen of the user that sent the friend request
+        pusherServer.trigger(toPusherKey(`user:${idToAdd}:friends`), 'new_friend', {});
+
         // add friends to each other
         // post request is not cached so we can use db
         await db.sadd(`user:${session.user.id}:friends`, idToAdd);
