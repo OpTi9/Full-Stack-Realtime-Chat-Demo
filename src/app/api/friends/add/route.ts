@@ -4,22 +4,14 @@ import {authOptions} from "@/lib/auth";
 import {fetchRedis} from "@/helpers/redis";
 import {db} from "@/lib/db";
 import {z} from "zod";
+import {pusherServer} from "@/lib/pusher";
+import {toPusherKey} from "@/lib/utils";
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
         const {email: emailToAdd} = addFriendValidator.parse(body.email);
-        // find user id from email
-        // const RESTResponse = await fetch(`${process.env.UPSTASH_REDIS_REST_URL}/get/user:email:${emailToAdd}`,
-        //     {
-        //         headers: {
-        //             Authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
-        //         },
-        //         cache: 'no-cache',
-        //     }
-        // );
-        //
-        // const data = await RESTResponse.json() as {result: string};
+
         const idToAdd = await fetchRedis('get', `user:email:${emailToAdd}`) as string;
 
         // if it doesn't exist, return 400
@@ -49,6 +41,12 @@ export async function POST(req: Request) {
         if (isAlreadyFriends) {
             return new Response('This user is already in your friendlist', {status: 400});
         }
+
+        // using pusher to send friend request
+        pusherServer.trigger(toPusherKey(`user:${idToAdd}:incoming_friend_requests`), 'incoming_friend_requests', {
+            senderId: session.user.id,
+            senderEmail: session.user.email,
+        });
 
         // valid request, proceed
         await db.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id);
