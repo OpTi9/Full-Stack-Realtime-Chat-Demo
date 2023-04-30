@@ -11,7 +11,7 @@ interface FriendRequestsSidebarOptionsProps {
     sessionId: string
 }
 
-const FriendRequestsSidebarOptions: FC<FriendRequestsSidebarOptionsProps> = ({initialUnseenRequestsCount, sessionId}) => {
+const FriendRequestSidebarOptions: FC<FriendRequestsSidebarOptionsProps> = ({initialUnseenRequestsCount, sessionId}) => {
     const [unseenRequestsCount, setUnseenRequestsCount] = useState<number>(
         initialUnseenRequestsCount
     );
@@ -48,4 +48,4 @@ const FriendRequestsSidebarOptions: FC<FriendRequestsSidebarOptionsProps> = ({in
     </Link>
 }
 
-export default FriendRequestsSidebarOptions
+export default FriendRequestSidebarOptions
