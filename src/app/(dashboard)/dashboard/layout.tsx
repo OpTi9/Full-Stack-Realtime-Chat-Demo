@@ -11,6 +11,7 @@ import {fetchRedis} from "@/helpers/redis";
 import {getFriendsByUserId} from "@/helpers/get-friends-by-user-id";
 import SidebarChatList from "@/components/SidebarChatList";
 import MobileChatLayout from "@/components/MobileChatLayout";
+import { SidebarOption } from '@/types/typings';
 
 interface LayoutProps {
     children:ReactNode
