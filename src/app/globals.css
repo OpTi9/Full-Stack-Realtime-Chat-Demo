@@ -4,10 +4,11 @@
 
 @layer base {
     container {
-        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+        @apply max-w-7xl mx-auto px-1 sm:px-2 lg:px-4
     }
 }
 
+/* For WebKit-based browsers (Chrome, Safari, etc.) */
 .scrollbar-w-2::-webkit-scrollbar {
     width: 0.25rem;
     height: 0.25rem;
@@ -27,4 +28,13 @@
 
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
     border-radius: 0.25rem;
+}
+
+/* For Firefox */
+.scrollbar-w-2 {
+    scrollbar-width: thin;
+}
+
+.scrollbar-thumb-blue {
+    scrollbar-color: #edf2f7 #f7fafc;
 }
