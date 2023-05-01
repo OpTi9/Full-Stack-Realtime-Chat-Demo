@@ -33,14 +33,14 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
     return (
         <div className='fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4'>
             <div className='w-full flex justify-between items-center'>
+                <Button onClick={() => setOpen(true)} className='gap-4'>
+                    <Menu className='h-6 w-6' />
+                </Button>
                 <Link
                     href='/dashboard'
                     className={buttonVariants({ variant: 'ghost' })}>
                     <Icons.Logo className='h-6 w-auto text-indigo-600' />
                 </Link>
-                <Button onClick={() => setOpen(true)} className='gap-4'>
-                    Menu <Menu className='h-6 w-6' />
-                </Button>
             </div>
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -61,9 +61,11 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                                         <div className='flex h-full flex-col overflow-hidden bg-white py-6 shadow-xl'>
                                             <div className='px-4 sm:px-6'>
                                                 <div className='flex items-start justify-between'>
-                                                    <Dialog.Title className='text-base font-semibold leading-6 text-gray-900'>
-                                                        Dashboard
-                                                    </Dialog.Title>
+                                                    <Link
+                                                        href='/dashboard'
+                                                        className={buttonVariants({ variant: 'ghost' })}>
+                                                        <Icons.Logo className='h-6 w-auto text-indigo-600' />
+                                                    </Link>
                                                     <div className='ml-3 flex h-7 items-center'>
                                                         <button
                                                             type='button'

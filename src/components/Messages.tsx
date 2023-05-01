@@ -82,7 +82,7 @@ const Messages: FC<MessagesProps> = ({initialMessages, sessionId, sessionImg, ch
                                 fill
                                 src={isCurrentUser ? (sessionImg as string) : chatPartner.image}
                                 alt={isCurrentUser ? 'Your profile picture' : `${chatPartner.name}'s profile picture`}
-                                className='rounded-full'
+                                className='rounded-full -z-50'
                                 referrerPolicy='no-referrer'
                             />
                         </div>

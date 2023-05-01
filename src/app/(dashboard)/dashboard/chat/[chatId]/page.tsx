@@ -51,10 +51,10 @@ const page = async ({params}: PageProps) => {
     const initialMessages = await getChatMessages(chatId);
 
     return <div className='flex-1 justify-between flex flex-col h-full max-h-[calc(106vh-6rem)]'>
-        <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+        <div className="mt-7 md:mt-0 py-1.5 md:py-3 sm:items-center justify-between border-b-2 border-gray-200">
             <div className="relative flex items-center space-x-4">
                 <div className="relative">
-                    <div className='relative w-8 sm:w-12 h-8 sm:h-12'>
+                    <div className='relative w-8 md:w-12 h-8 md:h-12'>
                         <Image
                             fill
                             referrerPolicy='no-referrer'
