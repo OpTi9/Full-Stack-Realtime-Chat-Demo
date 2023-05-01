@@ -23,7 +23,13 @@ const sidebarOptions: SidebarOption[] = [
         name: 'Add friend',
         href: '/dashboard/add',
         Icon: 'UserPlus'
-    }
+    },
+    {
+        id: 2,
+        name: 'New group',
+        href: '/dashboard/add',
+        Icon: 'Users'
+    },
 ]
 
 const Layout = async ({children}: LayoutProps) => {
