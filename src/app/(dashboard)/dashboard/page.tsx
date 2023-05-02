@@ -22,9 +22,11 @@ const page = async ({}) => {
                 `chat:${chatHrefConstructor(session.user.id, friend.id)}:messages`,
                 -1,
                 -1
-            )) as string[]
+            )) as string[];
 
-            const lastMessage = JSON.parse(lastMessageRaw) as Message
+            console.log('lastMessageRaw:', lastMessageRaw);
+
+            const lastMessage = lastMessageRaw ? JSON.parse(lastMessageRaw) as Message : undefined;
 
             return {
                 ...friend,
@@ -69,11 +71,11 @@ const page = async ({}) => {
                                 <h4 className='text-lg font-semibold'>{friend.name}</h4>
                                 <p className='mt-1 max-w-md'>
                   <span className='text-zinc-400'>
-                    {friend.lastMessage.senderId === session.user.id
+                    {friend.lastMessage?.senderId === session.user.id
                         ? 'You: '
                         : ''}
                   </span>
-                                    {friend.lastMessage.text}
+                                    {friend.lastMessage?.text}
                                 </p>
                             </div>
                         </Link>
